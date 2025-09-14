@@ -1,0 +1,39 @@
+package org.firstinspires.ftc.teamcode;
+
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.CRServo;
+
+@TeleOp(name = "TEST_2 (Blocks to Java)")
+public class TEST_2 extends LinearOpMode {
+
+  private CRServo ServoTest;
+  private CRServo ServoTest2;
+
+  /**
+   * This sample contains the bare minimum Blocks for any regular OpMode. The 3 blue
+   * Comment Blocks show where to place Initialization code (runs once, after touching the
+   * DS INIT button, and before touching the DS Start arrow), Run code (runs once, after
+   * touching Start), and Loop code (runs repeatedly while the OpMode is active, namely not
+   * Stopped).
+   */
+  @Override
+  public void runOpMode() {
+    ServoTest = hardwareMap.get(CRServo.class, "Servo Test");
+    ServoTest2 = hardwareMap.get(CRServo.class, "Servo Test 2");
+
+    // Put initialization blocks here.
+    waitForStart();
+    if (opModeIsActive()) {
+      // Put run blocks here.
+      while (opModeIsActive()) {
+        ServoTest.setPower(gamepad1.left_stick_x);
+        ServoTest2.setPower(gamepad1.right_stick_x);
+        // Put loop blocks here.
+        telemetry.update();
+        telemetry.addData("Servo Position", ServoTest.getPower());
+        telemetry.addData("Servo Position 2", ServoTest2.getPower());
+      }
+    }
+  }
+}
